@@ -117,7 +117,7 @@ $totalPages = ceil($totalPosts / $postsPerPage);
                 echo '</div>';
             }
         } else {
-            echo "<p>Không có bài viết nào.</p>";
+            echo "<p>".getLang('no_post')."</p>";
         }
         ?>
         <div style="display: flex;

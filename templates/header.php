@@ -1,5 +1,5 @@
 <?php
-date_default_timezone_set('Asia/Ho_Chi_Minh'); // Đặt múi giờ cho máy chủ PHP là múi giờ của Việt Nam
+date_default_timezone_set('Asia/Tokyo'); // Đặt múi giờ cho máy chủ PHP là múi giờ của Việt Nam
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -81,10 +81,10 @@ if(!empty($_SESSION['id']))
                             <?php endif; ?>
                         </li>
                         <li>
-                            <li class="dropdown-trigger language-dropdown"><a href=""><span class="flag-img"><img src="image/icon/eng-flag.png" alt=""></span>en-gb </a><i class="fas fa-chevron-down dropdown-arrow"></i>
+                            <li class="dropdown-trigger language-dropdown"><a href=""><span class="flag-img"><img style="height: 20px;" src="image/icon/<?php echo $selected_lang == "japan" ?  "japan-flag.png" :  "vn-flag.png";  ?>" alt="">   <?= $selected_lang ?></span></a><i class="fas fa-chevron-down dropdown-arrow"></i>
                                 <ul class="dropdown-box">
-                                    <li> <a href="index.php?lang=vi"> <span class="flag-img"><img src="image/icon/vn-flag.png" alt=""></span>Viet Nam</a></li>
-                                    <li> <a href="index.php?lang=japan"> <span class="flag-img"><img src="image/icon/japan-flag.png" alt=""></span>Japan</a></li>
+                                    <li> <a href="index.php?lang=vi"> <span class="flag-img"><img style="height: 20px;"  src="image/icon/vn-flag.png" alt=""></span>Viet Nam</a></li>
+                                    <li> <a href="index.php?lang=japan"> <span class="flag-img"><img style="height: 20px;"  src="image/icon/japan-flag.png" alt=""></span>Japan</a></li>
                                 </ul>
                             </li>
                         </li>

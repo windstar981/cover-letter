@@ -70,7 +70,8 @@ $lang = array(
     'add_admin' => 'Thêm Admin',
     'STT' => 'STT',
     'username' =>'Tên đăng nhập',
-    'set_pd' => 'Đặt lại mật khẩU',
+    'set_pd' => 'Đặt lại mật khẩu',
     'username_had' => 'Tên đăng nhập đã tồn tại',
+    'no_post' => 'Không có bài viết nào.'
 );
 ?>

@@ -105,14 +105,14 @@ $totalPages = ceil($totalPosts / $postsPerPage);
                 echo '<div class="post">';
                 echo '<a href ="view.php?id='.$row['id'].'"><img src="admin/' . $row['img'] . '" alt="' . $row['title'] . '" class="img-fluid" style="max-width: 150px;"></a>';
                 echo '<div class="post-content">';
-                echo '<h3 class="post-title mb-3">' . $row['title'] . '</h3>';
+                echo '<h3 class="post-title mb-3"><a href ="view.php?id='.$row['id'].'">' . $row['title'] . '</a></h3>';
                 echo '<p class="post-description mb-3">' . $row['abstract'] . '</p>';
                 echo '<p class="mb-2"><strong>'.getLang('created_at').':</strong> ' . date('d-m-Y', $row['created_at']) . '</p>';
                 echo '</div>';
                 echo '</div>';
             }
         } else {
-            echo "<p>Không có bài viết nào.</p>";
+            echo "<p>".getLang('no_post')."</p>";
         }
         ?>
         <div style="display: flex; flex-direction: column;" class="mb-3">

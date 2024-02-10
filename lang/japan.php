@@ -72,5 +72,6 @@ $lang = array(
     'username' =>'ユーザー名',
     'set_pd' => 'パスワードの設定',
     'username_had' => 'ユーザー名が既に存在します',
+    'no_post' => '投稿はありません。'
 );
 ?>
