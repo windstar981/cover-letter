@@ -113,7 +113,7 @@ $totalPages = ceil($totalPosts / $postsPerPage);
     <input type="file" name="image" class="form-control" accept="image/*">
 
     <label for="content" class="form-label"><?= getLang('description') ?>:</label>
-    <div id="editor" class="form-control" style="height: auto; max-height:1000px;"></div>
+    <div id="editor" class="form-control" style="height: auto; max-height:100000px;"></div>
     <input type="hidden" name="description" id="description">
 
     <button type="submit" class="btn btn-primary"><?= getLang('add') ?></button>

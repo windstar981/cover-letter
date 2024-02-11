@@ -72,6 +72,7 @@ $lang = array(
     'username' =>'Tên đăng nhập',
     'set_pd' => 'Đặt lại mật khẩu',
     'username_had' => 'Tên đăng nhập đã tồn tại',
-    'no_post' => 'Không có bài viết nào.'
+    'no_post' => 'Không có bài viết nào.',
+    'STT' => 'STT',
 );
 ?>

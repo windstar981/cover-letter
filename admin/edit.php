@@ -10,32 +10,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $shortDescription = $_POST['short_description'];
   $image = $_FILES['image']['name'];
 
-  $content = $_POST['description'];
+  $content = ($_POST['description']);
 
   // Thực hiện các kiểm tra và xử lý dữ liệu nếu cần
   // ...
 
   // Thực hiện câu lệnh SQL để cập nhật thông tin bài viết
   $articleIdToUpdate = $_GET['id'];
-  if (!empty($image)) {
-    $image = 'img/' . $image;
-    $updateSql = "UPDATE article SET 
-                    title = '$title', 
-                    abstract = '$shortDescription', 
-                    img = '$image', 
-                    description = '$content', 
-                    update_at = UNIX_TIMESTAMP()
-                  WHERE id = $articleIdToUpdate";
-  } else {
-    $updateSql = "UPDATE article SET 
-                    title = '$title', 
-                    abstract = '$shortDescription', 
-                    description = '$content', 
-                    update_at = UNIX_TIMESTAMP()
-                  WHERE id = $articleIdToUpdate";
-  }
-  $conn->query($updateSql);
+// Assuming $conn is your mysqli connection object
 
+if (!empty($image)) {
+  $image = 'img/' . $image;
+  $updateSql = "UPDATE article SET 
+                  title = ?, 
+                  abstract = ?, 
+                  img = ?, 
+                  description = ?, 
+                  update_at = UNIX_TIMESTAMP()
+                WHERE id = ?";
+} else {
+  $updateSql = "UPDATE article SET 
+                  title = ?, 
+                  abstract = ?, 
+                  description = ?, 
+                  update_at = UNIX_TIMESTAMP()
+                WHERE id = ?";
+}
+
+try {
+  $stmt = $conn->prepare($updateSql);
+
+  if (!empty($image)) {
+      $stmt->bind_param("ssssi", $title, $shortDescription, $image, $content, $articleIdToUpdate);
+  } else {
+      $stmt->bind_param("sssi", $title, $shortDescription, $content, $articleIdToUpdate);
+  }
+
+  $stmt->execute();
+  $stmt->close();
+} catch (Exception $e) {
+  echo 'Message: ' . $e->getMessage();
+}
 
 
   // Xử lý upload ảnh nếu có
@@ -150,8 +165,8 @@ $row = $result->fetch_assoc();
       ?>
 
       <label for="content" class="form-label" style="display: block;"><?= getLang('description') ?>:</label>
-      <div id="editor" class="form-control" style="height: auto; max-height:1000px;"><?php echo $row['description']; ?></div>
-      <input type="hidden" name="description" id="description" value="<?php echo $row['description']; ?>">
+      <div id="editor" class="form-control" style="height: auto; max-height:100000px;"><?php echo $row['description']; ?></div>
+      <input type="hidden" name="description" id="description" value="<?php echo htmlspecialchars($row['description']); ?>">
 
       <button type="submit" class="btn btn-warning"><?= getLang('save') ?></button>
     </form>

@@ -104,7 +104,7 @@ if ($_SESSION['level'] == 2) {
             <div class="table-wrapper__content table-collapse scrollbar-thin scrollbar-visible" data-simplebar>
                 <table class="table table--spaces">
                     <colgroup>
-                        <col width="70px">
+                        <col width="90px">
                         <col>
                         <col>
                         <col>
@@ -116,7 +116,7 @@ if ($_SESSION['level'] == 2) {
                         <tr class="table__header-row">
                             <th>
                                 <div class="table__checkbox table__checkbox--all">
-                                    <?= getLang('stt') ?>
+                                    <?= getLang('STT') ?>
                                 </div>
                             </th>
                             <th class="table__th-sort"><span class="align-middle"><?= getLang('username') ?></span>
@@ -132,7 +132,7 @@ if ($_SESSION['level'] == 2) {
 
 
                         ?>
-                            <tr class="table__row">
+                            <tr class="table__row mt-2">
                                 <td class="table__td">
                                     <div class="table__checkbox table__checkbox--all">
                                         <?php echo $i + 1 ?>

@@ -1,7 +1,7 @@
 <?php
 
 //connect to the database
-$conn = mysqli_connect('localhost', 'root', '', 'bookstore');
+$conn = mysqli_connect('localhost', 'root', '', 'cover_letter');
 
 // check connection
 if (!$conn) {

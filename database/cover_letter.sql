@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 05, 2024 lúc 03:26 PM
+-- Thời gian đã tạo: Th2 11, 2024 lúc 03:25 PM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 7.4.28
 
@@ -39,6 +39,13 @@ CREATE TABLE `article` (
   `update_by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Đang đổ dữ liệu cho bảng `article`
+--
+
+INSERT INTO `article` (`id`, `title`, `description`, `img`, `abstract`, `created_at`, `update_at`, `created_by`, `update_by`) VALUES
+(27, '従業員向けのカバーレターのサンプル', '<p>[Your Name]</p><p>[Your Address]</p><p>[City, Zip Code]</p><p>[Your Email Address]</p><p>[Your Phone Number]</p><p>[Today\'s Date]</p><p><br></p><p>[Employer\'s Name]</p><p>[Company Name]</p><p>[Company Address]</p><p>[City, Zip Code]</p><p><br></p><p>拝啓、お世話になっております。</p><p><br></p><p>私は[Your Name]と申します。このたびは、貴社での仕事に興味を持ち、応募させていただきたいと思います。私は[Your University/Work Experience]での経験を通じて、[Relevant Skills and Qualifications]のスキルを身につけました。</p><p><br></p><p>私は課題に対して積極的かつ柔軟に取り組むことができ、新しいアイディアを提案することによりチームの成功に貢献できる自信があります。[Company Name]が提供するビジョンと価値観に共感し、それに基づいて私の経験と能力を活かして貢献したいと考えています。</p><p><br></p><p>私は流暢な日本語と英語が話せ、ビジネス環境で円滑にコミュニケーションを取ることができます。また、[Relevant Certifications or Achievements]など、私の経歴を裏付ける資格も取得しています。</p><p><br></p><p>[Company Name]での面接の機会を頂ければ、さらに詳しくお話しできることを楽しみにしています。ご検討いただき、誠にありがとうございます。</p><p><br></p><p>何かご質問がございましたら、どうぞお気軽にお知らせください。ご多忙の中、お時間をいただき誠にありがとうございました。</p><p><br></p><p>何よりも、貴社でお働きできることを心より楽しみにしております。</p><p><br></p><p>どうぞよろしくお願いいたします。</p><p><br></p><p>[Your Name]</p><p><br></p><p>----------</p>', 'img/images.png', '<p>従業員向けのカバーレターのサンプル</p>', 1707661415, 0, 0, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -58,13 +65,6 @@ CREATE TABLE `customers` (
   `cus_create` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Đang đổ dữ liệu cho bảng `customers`
---
-
-INSERT INTO `customers` (`cus_id`, `cus_username`, `cus_password`, `cus_mail`, `cus_tel`, `cus_name`, `cus_add`, `activation_code`, `status`, `cus_create`) VALUES
-(124, '', '$2y$10$4x6JJ0jSfYXIpzmoeJQQDOef7YaZkEZTX/nMjLntNyna0vvohQT9W', 'nmhieu981@gmail.com', '(+84) 964536632', 'Nguyễn Minh Hiếu', 'Ninh Bình', 'd3696cfb815ab692407d9362e6f06c28', 1, '2024-02-05 13:49:58');
-
 -- --------------------------------------------------------
 
 --
@@ -77,17 +77,6 @@ CREATE TABLE `logs_login` (
   `last_login` int(11) NOT NULL,
   `current_login` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Đang đổ dữ liệu cho bảng `logs_login`
---
-
-INSERT INTO `logs_login` (`id`, `user_id`, `last_login`, `current_login`) VALUES
-(1, 117, 1707042716, 1707141183),
-(2, 118, 1707042716, 1707141183),
-(3, 119, 1707042716, 1707141183),
-(4, 121, 1707136635, 1707141183),
-(5, 124, 1707141055, 1707141183);
 
 -- --------------------------------------------------------
 
@@ -108,8 +97,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`u_id`, `u_name`, `u_fullname`, `password`, `level`) VALUES
-(6, 'wind', 'Nguyễn Minh Hiếu', '$2y$10$.XniWD2wPYnB90HDR/THqe3YhPELAlL9a9OG5.SYL9WJaY.s9YJNe', 2),
-(7, 'VA', 'VA', '$2y$10$sIG/f0HPdZk3WpDQBHD5VOO.r7KXXlbTamWoYyvh6KZEOYaPpOQVm', 1);
+(7, 'VA', 'VA', '$2y$10$sIG/f0HPdZk3WpDQBHD5VOO.r7KXXlbTamWoYyvh6KZEOYaPpOQVm', 2),
+(11, 'root', 'root', '$2y$10$dy.7Xeu1pukJXwxAG7LsXuXgGpQT.ZWvRmf52gxkT3z5Yw1uyeNIO', 2);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -147,25 +136,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT cho bảng `article`
 --
 ALTER TABLE `article`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT cho bảng `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `cus_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
+  MODIFY `cus_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
 
 --
 -- AUTO_INCREMENT cho bảng `logs_login`
 --
 ALTER TABLE `logs_login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `u_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `u_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -13,18 +13,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
         $url_img = $targetFile; // Lưu URL của tệp ảnh vào biến $url_img
     } else {
-        echo "Lỗi khi tải tệp ảnh lên.";
+        echo "Error uploading image file.";
         exit;
     }
 
-    // Chuẩn bị truy vấn SQL để chèn dữ liệu
-    $sql = "INSERT INTO article (title, description, img, abstract, created_at) VALUES ('$name', '$description', '$url_img', '$short_description','$date')";
+    $sql = "INSERT INTO article (title, description, img, abstract, created_at) VALUES (?, ?, ?, ?, ?)";
 
-    // Thực hiện truy vấn
-    if ($conn->query($sql) === TRUE) {
-        echo "Thêm sản phẩm thành công!";
-    } else {
-        echo "Lỗi: " . $sql . "<br>" . $conn->error;
+    try {
+        $stmt = $conn->prepare($sql);
+
+        $stmt->bind_param("sssss", $name, $description, $url_img, $short_description, $date);
+
+        if ($stmt->execute()) {
+            header("Location: index.php");
+        } else {
+            header("Location: 404.php");
+        }
+
+        $stmt->close();
+    } catch (Exception $e) {
+        echo 'Message: ' . $e->getMessage();
     }
 
     // Đóng kết nối

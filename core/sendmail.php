@@ -9,6 +9,7 @@ require 'vendor/autoload.php';
 $mail = new PHPMailer(true);
 
 try {
+    require_once './config.php';
     $mail->SMTPDebug = false;
     $mail->isSMTP();
     $mail->Host       = 'smtp.gmail.com;';
@@ -23,10 +24,10 @@ try {
     $mail->addAddress($email);
 
     $mail->isHTML(true);
-    $mail->Subject = 'Xác thực tài khoản Cover letter';
-    $mail->Body    = '<p>Xin chào<b> ' . $name . ',</b></p>';
-    $mail->Body .= '<p>Bạn đã đăng ký tài khoản thành công, để xác thực tài khoản, bạn vui lòng nhấp vào đường link dưới đây:</p>';
-    $mail->Body .= '<a href="http://localhost/bookstore/core/activation.php?accout=' . $email . '&code=' . $activationCode . '">Click here</a>';
+    $mail->Subject = 'Account Verification - Cover letter';
+    $mail->Body    = '<p>Hello <b>' . $name . ',</b></p>';
+    $mail->Body .= '<p>You have successfully registered an account. To verify your account, please click on the link below:</p>';
+    $mail->Body .=  '<a href="'. $domain . '/core/activation.php?account=' . $email . '&code=' . $activationCode . '">Click here</a>';
     $mail->AltBody = 'Body in plain text for non-HTML mail clients';
     $mail->send();
     echo "Mail has been sent successfully!";
